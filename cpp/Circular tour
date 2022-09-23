@@ -1,0 +1,28 @@
+//uppose there is a circle. There are N petrol pumps on that circle. You will be given two sets of data.
+1. The amount of petrol that every petrol pump has.
+2. Distance from that petrol pump to the next petrol pump.
+Find a starting point where the truck can start to get through the complete circle without exhausting its petrol in between.
+
+
+
+
+class Solution:
+    
+    #Function to find starting point where the truck can start to get through
+    #the complete circle without exhausting its petrol in between.
+    def tour(self,lis, n):
+        balance=0
+        ans=0
+        deficiency=0
+        idx=0
+        for fuel,distance in lis:
+            balance+=fuel-distance
+            if balance<0:
+                ans=idx+1
+                deficiency+=balance
+                balance=0
+            idx+=1
+        if(balance+deficiency)<0:
+            return -1
+        return ans
+        
